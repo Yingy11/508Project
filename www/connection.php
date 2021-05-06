@@ -6,9 +6,9 @@ ini_set('display_errors', 1);
 
 // Parameters of the MySQL connection 
 $servername = "localhost";
-$username = "acano";
-$password = "acanopasswd";
-$database = "humanresources_acano";
+$username = "yingy";
+$password = "V70455316";
+$database = "project_yingy";
 
 try {
     // Establish a connection with the MySQL server
@@ -27,7 +27,7 @@ if (!isset($_SESSION['user_ID']))
     // If the page is receiving the email and password from the login form then verify the login data
     if (isset($_POST['email']) && isset($_POST['password']))
     {
-        $stmt = $conn->prepare("SELECT ID, password FROM user WHERE email=:email");
+        $stmt = $conn->prepare("SELECT employee_ID, password FROM employees WHERE email=:email");
         $stmt->bindValue(':email', $_POST['email']);
         $stmt->execute();
         
@@ -37,11 +37,19 @@ if (!isset($_SESSION['user_ID']))
         if(!empty($queryResult) && password_verify($_POST["password"], $queryResult['password']))
         {
             // Create session variable
-            $_SESSION['user_ID'] = $queryResult['ID'];
-            
-            // Redirect to URL 
-            header("Location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
-        } else {
+            $_SESSION['user_ID'] = $queryResult['employee_ID'];
+		$owner = $conn -> query("SELECT * FROM owners WHERE employee_ID = {$_SESSION['user_ID']}")->fetch();
+		$manager = $conn -> query("SELECT * FROM managers WHERE employee_ID = {$_SESSION['user_ID']}")->fetch();
+		if(is_array($manager)){
+			header("Location: manager.php"); 
+		}
+		else if(is_array($owner)){
+			header("Location: owner.php");	
+		}
+		else {
+			header("Location: worker.php");		
+		}
+	} else {
             // Password mismatch
             require('login.php');
             exit();

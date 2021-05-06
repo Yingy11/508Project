@@ -8,19 +8,14 @@ class Employee
         global $conn;
         
         $sqlQuery = "SELECT e.employee_ID as `ID`,
-                            concat(e.first_name, ' ', e.last_name) as `name`,
-                            e.salary as `salary`,
-                            concat(m.first_name, ' ', m.last_name) as `manager`,
-                            d.department_name as `department`,
+                            e.fullname as `name`,
                             e.email as `email`,
-                            j.job_title as `job`
-                     FROM employees e
-                     INNER JOIN employees m ON (e.manager_ID = m.employee_ID)
-                     INNER JOIN departments d ON (e.department_ID = d.department_ID)
-                     INNER JOIN jobs j ON (e.job_ID = j.job_ID) ";
+                            e.dob as `dob`,
+			    e.Address as `address`
+                     FROM employees e ";
         
         if (! empty($_POST["search"]["value"])) {
-            $sqlQuery .= 'WHERE (e.first_name LIKE "%' . $_POST["search"]["value"] . '%" OR e.last_name LIKE "%' . $_POST["search"]["value"] . '%" or j.job_title LIKE "%' . $_POST["search"]["value"] . '%") ';
+            $sqlQuery .= 'WHERE (e.fullname LIKE "%' . $_POST["search"]["value"] . '%") ';
         }
         
         if (! empty($_POST["order"])) {
@@ -48,11 +43,10 @@ class Employee
             
             $dataRow[] = $sqlRow['ID'];
             $dataRow[] = $sqlRow['name'];
-            $dataRow[] = $sqlRow['salary'];
-            $dataRow[] = $sqlRow['manager'];
-            $dataRow[] = $sqlRow['department'];
             $dataRow[] = $sqlRow['email'];
-            $dataRow[] = $sqlRow['job'];
+            $dataRow[] = $sqlRow['dob'];
+            $dataRow[] = $sqlRow['address'];
+            
             
             $dataRow[] = '<button type="button" name="update" emp_id="' . $sqlRow["ID"] . '" class="btn btn-warning btn-sm update">Update</button>
                           <button type="button" name="delete" emp_id="' . $sqlRow["ID"] . '" class="btn btn-danger btn-sm delete" >Delete</button>';

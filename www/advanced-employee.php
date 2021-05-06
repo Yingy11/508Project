@@ -35,13 +35,11 @@
 		<table id="table-employee" class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>Name</th>
-					<th>Salary</th>
-					<th>Manager</th>
-					<th>Department</th>
 					<th>Email</th>
-					<th>Job</th>
+					<th>Phone</th>
+					<th>Dob</th>
+					<th>Address</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -59,49 +57,15 @@
 				<div class="modal-body">
 					<div class="form-group">
 
-						<label>First name</label><input type="text" class="form-control" id="firstname" placeholder="Enter first name" required>
-						
-						<label>Last name</label> <input type="text" class="form-control" id="lastname" placeholder="Enter last name" required>
-						
+						<label>Name</label><input type="text" class="form-control" id="firstname" placeholder="Enter first name" required>
+
 						<label>Email</label> <input type="text" class="form-control" id="email" placeholder="Enter email" required>
 						
-						<label>Salary</label> <input type="number" class="form-control" min="0.01" step="0.01" size="8" value="0" id="salary">
-						
-						<label>Department</label>
-						<select class="form-control" id="department">
-            			    <?php
-            			        $sqlQuery = "SELECT department_ID, department_name FROM departments ORDER BY department_name ASC";
-            			        $stmt = $conn->prepare($sqlQuery);
-            			        $stmt->execute();
-            			        while ($row = $stmt->fetch()) {
-            			            echo "<option value=\"" . $row["department_ID"] . "\">" . $row["department_name"] . "</option>";
-            			        }
-                            ?>
-            			</select>
-            			
-            			<label>Manager</label>
-						<select class="form-control" id="manager">
-            			    <?php
-            			        $sqlQuery = "SELECT employee_ID, concat(first_name, \" \", last_name) as `name` FROM employees ORDER BY `name` ASC";
-            			        $stmt = $conn->prepare($sqlQuery);
-            			        $stmt->execute();
-            			        while ($row = $stmt->fetch()) {
-            			            echo "<option value=\"" . $row["employee_ID"] . "\">" . $row["name"] . "</option>";
-            			        }
-                            ?>
-            			</select>
-            			
-            			<label>Job</label>
-						<select class="form-control" id="job">
-            			    <?php
-            			        $sqlQuery = "SELECT job_ID, job_title FROM jobs ORDER BY `job_title` ASC";
-            			        $stmt = $conn->prepare($sqlQuery);
-            			        $stmt->execute();
-            			        while ($row = $stmt->fetch()) {
-            			            echo "<option value=\"" . $row["job_ID"] . "\">" . $row["job_title"] . "</option>";
-            			        }
-                            ?>
-            			</select>
+						<label>Phone</label> <input type="number" class="form-control" min="0" step="1" size="10" value="0" id="phone" placeholder="Enter phone" required>
+						 
+						<label>Dob</label> <input type ="date" class="form-control" id="dob" value="2021-05-01" required>
+
+						<label>Address</label> <input type="text" class="form-control" id="address" placeholder="Enter address" required> 
 
 					</div>
 				</div>
