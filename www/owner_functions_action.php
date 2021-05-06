@@ -7,17 +7,18 @@ class Employee
     {
         global $conn;
         
-        $sqlQuery = "select e.employee_ID as `ID`, 
-			e.name as `name`, 
-			e.email as `email`, 
-			e.phone as `phone`, 
-			e.dob as `dob`, 
-			e.Address as `address`, 
+        $sqlQuery = "SELECT e.employee_ID as `ID`,
+                            e.name as `name`,
+                            e.email as `email`,
+                            e.phone as `phone`,
+			    e.dob as `dob`,
+			e.address as `address`,
 			e.job_title as `job_title`,
-			e.wage as `wage` from employees e";
+			e.wage as `wage`
+                     FROM employees e ";
         
         if (! empty($_POST["search"]["value"])) {
-            $sqlQuery .= 'WHERE (e.name LIKE "%' . $_POST["search"]["value"] . '%")';
+            $sqlQuery .= 'WHERE (e.name LIKE "%' . $_POST["search"]["value"] . '%" or e.job_title LIKE "%' . $_POST["search"]["value"] . '%") ';
         }
         
         if (! empty($_POST["order"])) {
@@ -73,15 +74,16 @@ class Employee
         
         if ($_POST["ID"]) {
             
-            $sqlQuery = "select e.employee_ID as `ID`, 
-			e.name as `name`, 
-			e.email as `email`, 
-			e.phone as `phone`, 
-			e.dob as `dob`, 
-			e.Address as `address`, 
-			e.job_title as `job_title`, 
-			e.wage as `wage` from employees e  
-			WHERE e.employee_ID = :employee_ID";
+            $sqlQuery = "SELECT employee_ID as `ID`,
+                            name,
+                            email,
+                            phone,
+                            dob,
+                            address,
+                            job_title,
+                            wage
+                     FROM employees
+                     WHERE employee_ID = :employee_ID";
             
             $stmt = $conn->prepare($sqlQuery);
             $stmt->bindValue(':employee_ID', $_POST["ID"]);
@@ -99,13 +101,13 @@ class Employee
             
             $sqlQuery = "UPDATE employees
                             SET
-                            name = :name,
+                            name = :first_name,
                             email = :email,
                             phone = :phone,
                             dob = :dob,
-			    Address = :address,
-			job_title = :job_title,
-			wage = :wage
+                            address = :address,
+                            job_title = :job_title,
+                            wage = :wage
                             WHERE employee_ID = :employee_ID";
             
             $stmt = $conn->prepare($sqlQuery);
@@ -114,8 +116,8 @@ class Employee
             $stmt->bindValue(':phone', $_POST["phone"]);
             $stmt->bindValue(':dob', $_POST["dob"]);
             $stmt->bindValue(':address', $_POST["address"]);
-		$stmt->bindValue(':job_title', $_POST["job_title"]);
-		$stmt->bindValue(':wage', $_POST["wage"]);
+            $stmt->bindValue(':job_title', $_POST["job_title"]);
+            $stmt->bindValue(':wage', $_POST["wage"]);
             $stmt->bindValue(':employee_ID', $_POST["ID"]);
             $stmt->execute();
         }
@@ -126,18 +128,18 @@ class Employee
         global $conn;
         
         $sqlQuery = "INSERT INTO employees
-                     (name, email, phone, dob, Address, job_title, wage)
+                     (name, email, phone, dob, address, job_title, wage)
                      VALUES
                      (:name, :email, :phone, :dob, :address, :job_title, :wage)";
         
         $stmt = $conn->prepare($sqlQuery);
         $stmt->bindValue(':name', $_POST["name"]);
-        $stmt->bindValue('email', $_POST["email"]);
+        $stmt->bindValue(':email', $_POST["email"]);
         $stmt->bindValue(':phone', $_POST["phone"]);
-        $stmt->bindValue(':address', $_POST["address"]);
         $stmt->bindValue(':dob', $_POST["dob"]);
-	$stmt->bindValue(':job_title', $_POST["job_title"]);
-	$stmt->bindValue(':wage', $_POST["wage"]);
+        $stmt->bindValue(':address', $_POST["address"]);
+        $stmt->bindValue(':job_title', $_POST["job_title"]);
+        $stmt->bindValue(':wage', $_POST["wage"]);
         $stmt->execute();
     }
     
@@ -146,12 +148,6 @@ class Employee
         global $conn;
         
         if ($_POST["ID"]) {
-            
-            $sqlQuery = "DELETE FROM job_history WHERE employee_ID = :employee_ID";
-            
-            $stmt = $conn->prepare($sqlQuery);
-            $stmt->bindValue(':employee_ID', $_POST["ID"]);
-            $stmt->execute();
             
             $sqlQuery = "DELETE FROM employees WHERE employee_ID = :employee_ID";
             

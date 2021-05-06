@@ -67,17 +67,19 @@
 						<label>Phone</label> <input type="number" class="form-control" id="phone" placeholder="Enter phone" required>
 						
 						<label>Dob</label> <input type= "date" class="form-control" id="dob" value="2021-05-01" required>
+			
+						<label>Address</label> <input type="text" class="form-control" id="address" placeholder="Enter address" required>
 						
 						<label>Wage</label> <input type="number" class="form-control" min="0.01" step="0.01" size="8" value="0" id="wage">
 						
 						<label>Job Title</label>
 						<select class="form-control" id="job_title">
             			    <?php
-            			        $sqlQuery = "SELECT employee_ID, job_title FROM employees ORDER BY title ASC";
+            			        $sqlQuery = "SELECT DISTINCT job_title FROM employees ORDER BY job_title ASC";
             			        $stmt = $conn->prepare($sqlQuery);
             			        $stmt->execute();
             			        while ($row = $stmt->fetch()) {
-            			            echo "<option value=\"" . $row["employee_ID"] . "\">" . $row["job_title"] . "</option>";
+            			            echo '<option>' .$row['job_title'].  '</option>';
             			        }
                             ?>
             			</select>

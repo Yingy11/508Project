@@ -10,8 +10,7 @@
 
 <div class="container-fluid mt-3 mb-3">
     <ul>
-    	<li><a href="basic-employee.php">Basic information about employees (read only)</a></li>
-    	<li><a href="advanced-employee.php">Advanced information about employees (add, edit, delete, search, sort, export)</a></li>
+    	<li><a href="logout.php">Log out</a></li>
     </ul>
 </div>
 
