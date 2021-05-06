@@ -11,7 +11,7 @@ $(document).ready(function(){
 		"language": {processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>'},
 		"order":[],
 		"ajax":{
-			url:"advanced-employee-action.php",
+			url:"owner_functions_action.php",
 			type:"POST",
 			data:{
 					action:'listEmployees'
@@ -24,19 +24,19 @@ $(document).ready(function(){
 					extend: 'excelHtml5',
 					title: 'Employees',
 					filename: 'Employees',
-					exportOptions: {columns: [1,2,3,4,5,6]}
+					exportOptions: {columns: [1,2,3,4,5,6,7]}
 				},
 				{
 					extend: 'pdfHtml5',
 					title: 'Employees',
 					filename: 'Employees',
-					exportOptions: {columns: [1,2,3,4,5,6]}
+					exportOptions: {columns: [1,2,3,4,5,6,7]}
 				},
 				{
 					extend: 'print',
 					title: 'Employees',
 					filename: 'Employees',
-					exportOptions: {columns: [1,2,3,4,5,6]}
+					exportOptions: {columns: [1,2,3,4,5,6,7]}
 				}]
 	});	
 	
@@ -52,7 +52,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		$('#save').attr('disabled','disabled');
 		$.ajax({
-			url:"advanced-employee-action.php",
+			url:"owner_functions_action.php",
 			method:"POST",
 			data:{
 				ID: $('#ID').val(),
@@ -78,7 +78,7 @@ $(document).ready(function(){
 		var ID = $(this).attr("emp_id");
 		var action = 'getEmployee';
 		$.ajax({
-			url:'advanced-employee-action.php',
+			url:'owner_functions_action.php',
 			method:"POST",
 			data:{ID:ID, action:action},
 			dataType:"json",
@@ -104,7 +104,7 @@ $(document).ready(function(){
 		var action = "deleteEmployee";
 		if(confirm("Are you sure you want to delete this employee?")) {
 			$.ajax({
-				url:'advanced-employee-action.php',
+				url:'owner_functions_action.php',
 				method:"POST",
 				data:{ID:ID, action:action},
 				success:function() {					
