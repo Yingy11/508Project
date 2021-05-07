@@ -18,7 +18,7 @@ $(document).ready(function(){
 				},
 			dataType:"json"
 		},
-		"columnDefs":[ {"targets":[0], "visible":false} ],
+		"columnDefs":[ {"targets":[0], "visible":true} ],
 		"buttons": [
 				{
 					extend: 'excelHtml5',

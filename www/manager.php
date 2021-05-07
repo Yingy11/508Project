@@ -10,8 +10,9 @@
 
 <div class="container-fluid mt-3 mb-3">
     <ul>
-    	<li><a href="basic-employee.php">View employee info (read only)</a></li>
-	<li><a href='advanced-employee.php'>View/Update personal info</a></li>
+    	<li><a href="basic-employee.php">View Employee Info</a></li>
+	<li><a href='advanced-employee.php'>View/Update Personal Info</a></li>
+	<li><a href='request_off_view.php'>View Request Off Work Log (All Reviewed)</a></li>
     	<li><a href="logout.php">Logout</a></li>
     </ul>
 </div>
