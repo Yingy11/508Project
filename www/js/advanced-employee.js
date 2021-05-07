@@ -56,13 +56,10 @@ $(document).ready(function(){
 			method:"POST",
 			data:{
 				ID: $('#ID').val(),
-				firstname: $('#firstname').val(),
-				lastname: $('#lastname').val(),
 				email: $('#email').val(),
-				salary: $('#salary').val(),
-				department: $('#department').val(),
-				manager: $('#manager').val(),
-				job: $('#job').val(),
+				phone: $('#phone').val(),
+				dob: $('#dob').val(),
+				address: $('#address').val(),
 				action: $('#action').val(),
 			},
 			success:function(){
@@ -101,7 +98,7 @@ $(document).ready(function(){
 		var action = "deleteEmployee";
 		if(confirm("Are you sure you want to delete this employee?")) {
 			$.ajax({
-				url:'advanced-employee-action.php',
+				url:'owner_functions_action.php',
 				method:"POST",
 				data:{ID:ID, action:action},
 				success:function() {					
