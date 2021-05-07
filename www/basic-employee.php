@@ -18,9 +18,12 @@
 				<tr>
 					<th>ID</th>
 					<th>Name</th>
-					<th>Salary</th>
-					<th>Manager</th>
-					<th>Department</th>
+					<th>Email</th>
+					<th>Phone</th>
+					<th>Dob</th>
+					<th>Address</th>
+					<th>Job Title</th>
+					<th>Wage</th>
 				</tr>
 			</thead>
 		</table>

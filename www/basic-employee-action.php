@@ -8,13 +8,14 @@ class Employee
         global $conn;
         
         $sqlQuery = "SELECT e.employee_ID as `ID`,
-                            concat(e.first_name, ' ', e.last_name) as `name`,
-                            e.salary as `salary`,
-                            concat(m.first_name, ' ', m.last_name) as `manager`,
-                            d.department_name as `department`
-                     FROM employees e
-                     INNER JOIN employees m ON (e.manager_ID = m.employee_ID)
-                     INNER JOIN departments d ON (e.department_ID = d.department_ID)";
+                            e.name as `name`,
+                            e.email as `email`,
+                            e.phone as `phone`,
+                            e.dob as `dob`,
+				e.address as `address`,
+				e.job_title as `job_title`,
+				e.wage as `wage`
+                     FROM employees e";
         
         $stmt = $conn->prepare($sqlQuery);
         $stmt->execute();
@@ -28,10 +29,12 @@ class Employee
             
             $dataRow[] = $sqlRow['ID'];
             $dataRow[] = $sqlRow['name'];
-            $dataRow[] = $sqlRow['salary'];
-            $dataRow[] = $sqlRow['manager'];
-            $dataRow[] = $sqlRow['department'];
-            
+            $dataRow[] = $sqlRow['email'];
+            $dataRow[] = $sqlRow['phone'];
+            $dataRow[] = $sqlRow['dob'];
+	$dataRow[] = $sqlRow['address'];
+	$dataRow[] = $sqlRow['job_title'];	
+            $dataRow[] = $sqlRow['wage'];
             $dataTable[] = $dataRow;
         }
         

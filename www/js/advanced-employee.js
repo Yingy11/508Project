@@ -24,19 +24,19 @@ $(document).ready(function(){
 					extend: 'excelHtml5',
 					title: 'Employees',
 					filename: 'Employees',
-					exportOptions: {columns: [1,2,3,4,5,6]}
+					exportOptions: {columns: [1,2,3,4,5,6,7]}
 				},
 				{
 					extend: 'pdfHtml5',
 					title: 'Employees',
 					filename: 'Employees',
-					exportOptions: {columns: [1,2,3,4,5,6]}
+					exportOptions: {columns: [1,2,3,4,5,6,7]}
 				},
 				{
 					extend: 'print',
 					title: 'Employees',
 					filename: 'Employees',
-					exportOptions: {columns: [1,2,3,4,5,6]}
+					exportOptions: {columns: [1,2,3,4,5,6,7]}
 				}]
 	});	
 	
@@ -85,13 +85,10 @@ $(document).ready(function(){
 			success:function(data){
 				$('#employee-modal').modal('show');
 				$('#ID').val(ID);
-				$('#firstname').val(data.first_name);
-				$('#lastname').val(data.last_name);
 				$('#email').val(data.email);
-				$('#salary').val(data.salary);
-				$('#department').val(data.department_ID);
-				$('#manager').val(data.manager_ID);
-				$('#job').val(data.job_ID);
+				$('#phone').val(data.phone);
+				$('#dob').val(data.dob);
+				$('#address').val(data.address);
 				$('.modal-title').html("Edit Employee");
 				$('#action').val('updateEmployee');
 				$('#save').val('Save');
