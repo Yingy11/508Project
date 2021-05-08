@@ -43,11 +43,11 @@ class Employee
             $dataRow = array();
             
             $dataRow[] = $sqlRow['ID'];
-            $dataRow[] = $sqlRow['name'];
             $dataRow[] = $sqlRow['request_date'];
-            $dataRow[] = $sqlRow['reason'];
-            $dataRow[] = $sqlRow['quantity'];
+            $dataRow[] = $sqlRow['name'];
             $dataRow[] = $sqlRow['item_name'];
+            $dataRow[] = $sqlRow['quantity'];
+            $dataRow[] = $sqlRow['reason'];
             $dataRow[] = $sqlRow['status'];
 	    $dataRow[] = $sqlRow['reviewed_by'];
             
@@ -73,7 +73,7 @@ class Employee
         if ($_POST["ID"]) {
             $sqlQuery = "SELECT request_ID as `ID`,
                            `status`
-                     FROM off_work_request
+                     FROM order_request
                      WHERE request_ID = :request_ID";
             
             $stmt = $conn->prepare($sqlQuery);
@@ -90,7 +90,7 @@ class Employee
 
         if ($_POST['ID']) {
             
-            $sqlQuery = "UPDATE off_work_request
+            $sqlQuery = "UPDATE order_request
                             SET
                             status = :status,
                             reviewed_by = '{$reviewed_by[0]}'
