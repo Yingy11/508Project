@@ -25,7 +25,7 @@
 <body>
 
 <div class="container-fluid mt-3 mb-3">
-	<h4>Employees</h4>
+	<h4>Pending Requests</h4>
 	
         	
 	<div class="table-responsive">

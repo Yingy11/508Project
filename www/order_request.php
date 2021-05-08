@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Resturant Database</title>
+<title>HR database - Owner</title>
 <?php require_once('header.php'); ?>
 
 <!-- Font Awesome library -->
@@ -14,7 +14,7 @@
 <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
 
-<script src="js/advanced-employee.js"></script>
+<script src="js/order_request.js"></script>
 
 <!-- CSS for datatables buttons -->
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"/>
@@ -25,22 +25,22 @@
 <body>
 
 <div class="container-fluid mt-3 mb-3">
-	<h4>Info</h4>
-	 
+	<h4>Order Requests</h4>
+	
+	<div class="pb-3">
+		<button type="button" id="addEmployee" class="btn btn-primary btn-sm">New Request</button>
+	</div> 
         	
 	<div class="table-responsive">
 		<table id="table-employee" class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>ID></th>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Phone</th>
-					<th>Dob</th>
-					<th>Address</th>
-					<th>Job Title</th>
-					<th>Wage</th>
-					<th>Actions</th>
+					<th>Request Date</th>
+					<th>Item Name</th>
+					<th>Quantity</th>
+					<th>Reason</th>
+					<th>Status</th>
+					<th>Reviewd By</th>
 				</tr>
 			</thead>
 		</table>
@@ -52,26 +52,20 @@
 		<form method="post" id="employee-form">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Update Info</h4>
+					<h4 class="modal-title">New Request</h4>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
+						<label>Item Name</label><input type ="text" class="form-control" id="item_name" required>
+						
+						<label>Quantity</label><input type ="number" class="form-control" min="1", step="1" id="quantity" required>
 
+						<label>Reason</label><input type="text" class="form-control" id="reason"  required>
 						
-						<label>Email</label> <input type="text" class="form-control" id="email" placeholder="Enter email" required>
-						
-						<label>Phone</label> <input type="number" class="form-control" id="phone" placeholder="Enter phone" required>
-						
-						<label>Dob</label> <input type= "date" class="form-control" id="dob" value="2021-05-01" required>
-			
-						<label>Address</label> <input type="text" class="form-control" id="address" placeholder="Enter address" required>
-						
-	   
 
 					</div>
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="ID" id="ID"/>
 					<input type="hidden" name="action" id="action" value=""/>
 					<input type="submit" name="save" id="save" class="btn btn-info" value="Save" />
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -14,6 +14,7 @@
 	<li><a href='advanced-employee.php'>View/Update Personal Info</a></li>
 	<li><a href='request_off_review.php'>Review Pending Off Work Requests</a></li>
 	<li><a href='request_off_view.php'>View Request Off Work Log (All Reviewed)</a></li>
+	<li><a href='order_request.php'>View/Add Order Requests</a></li>
     	<li><a href="logout.php">Logout</a></li>
     </ul>
 </div>

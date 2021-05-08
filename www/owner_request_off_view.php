@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Resturant Database</title>
+<title>HR database - Owner</title>
 <?php require_once('header.php'); ?>
 
 <!-- Font Awesome library -->
@@ -14,7 +14,7 @@
 <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
 
-<script src="js/advanced-employee.js"></script>
+<script src="js/owner_request_off_view.js"></script>
 
 <!-- CSS for datatables buttons -->
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"/>
@@ -25,21 +25,21 @@
 <body>
 
 <div class="container-fluid mt-3 mb-3">
-	<h4>Info</h4>
-	 
+	<h4>Employees</h4>
+	
         	
 	<div class="table-responsive">
 		<table id="table-employee" class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>ID></th>
+					<th><ID></th>
 					<th>Name</th>
-					<th>Email</th>
-					<th>Phone</th>
-					<th>Dob</th>
-					<th>Address</th>
-					<th>Job Title</th>
-					<th>Wage</th>
+					<th>Request Date</th>
+					<th>Reason</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Status</th>
+					<th>Reviewed By</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -52,21 +52,23 @@
 		<form method="post" id="employee-form">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Update Info</h4>
+					<h4 class="modal-title">Review Request</h4>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
 
-						
-						<label>Email</label> <input type="text" class="form-control" id="email" placeholder="Enter email" required>
-						
-						<label>Phone</label> <input type="number" class="form-control" id="phone" placeholder="Enter phone" required>
-						
-						<label>Dob</label> <input type= "date" class="form-control" id="dob" value="2021-05-01" required>
-			
-						<label>Address</label> <input type="text" class="form-control" id="address" placeholder="Enter address" required>
-						
-	   
+						<label>Status</label>
+						<select class="form-control" id="status">
+            			    <?php
+            			        $sqlQuery = "SELECT DISTINCT `status` FROM off_work_request ORDER BY `status` ASC";
+            			        $stmt = $conn->prepare($sqlQuery);
+            			        $stmt->execute();
+            			        while ($row = $stmt->fetch()) {
+            			            echo '<option>' .$row['status'].  '</option>';
+            			        }
+                            ?>
+            			</select>
+           
 
 					</div>
 				</div>
