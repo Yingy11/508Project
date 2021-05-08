@@ -80,7 +80,7 @@ $(document).ready(function(){
 				$('#employee-modal').modal('show');
 				$('#ID').val(ID);
 				$('#status').val(data.status);
-				$('.modal-title').html("Edit Employee");
+				$('.modal-title').html("Edit Request");
 				$('#action').val('updateEmployee');
 				$('#save').val('Save');
 			}

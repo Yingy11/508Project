@@ -59,14 +59,9 @@
 
 						<label>Status</label>
 						<select class="form-control" id="status">
-            			    <?php
-            			        $sqlQuery = "SELECT DISTINCT `status` FROM order_request ORDER BY `status` ASC";
-            			        $stmt = $conn->prepare($sqlQuery);
-            			        $stmt->execute();
-            			        while ($row = $stmt->fetch()) {
-            			            echo '<option>' .$row['status'].  '</option>';
-            			        }
-                            ?>
+            			    <option value="Approved">Approved</option>
+					<option value="Denied">Denided</option>
+					<option value="Pending">Pending</option>
             			</select>
            
 
