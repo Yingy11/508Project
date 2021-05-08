@@ -14,7 +14,7 @@
 <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
 
-<script src="js/request_off.js"></script>
+<script src="js/request_off_review.js"></script>
 
 <!-- CSS for datatables buttons -->
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"/>
@@ -25,22 +25,21 @@
 <body>
 
 <div class="container-fluid mt-3 mb-3">
-	<h4>Request Off Work</h4>
+	<h4>Employees</h4>
 	
-	<div class="pb-3">
-		<button type="button" id="addEmployee" class="btn btn-primary btn-sm">New Request</button>
-	</div> 
         	
 	<div class="table-responsive">
 		<table id="table-employee" class="table table-bordered table-striped">
 			<thead>
 				<tr>
+					<th>ID></th>
+					<th>Name</th>
 					<th>Request Date</th>
 					<th>Reason</th>
 					<th>Start Date</th>
 					<th>End Date</th>
 					<th>Status</th>
-					<th>Reviewd By</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 		</table>
@@ -52,22 +51,28 @@
 		<form method="post" id="employee-form">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">New Request</h4>
+					<h4 class="modal-title">Review Request</h4>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
 
-						<label>Reason</label><input type="text" class="form-control" id="reason"  required>
-						
-						<label>Start Date</label> <input type= "date" class="form-control" id="start_date" required>
-			
-						<label>End Date</label> <input type="date" class="form-control"  id="end_date" required>
-						
+						<label>Status</label>
+						<select class="form-control" id="status">
+            			    <?php
+            			        $sqlQuery = "SELECT DISTINCT `status` FROM off_work_request ORDER BY `status` ASC";
+            			        $stmt = $conn->prepare($sqlQuery);
+            			        $stmt->execute();
+            			        while ($row = $stmt->fetch()) {
+            			            echo '<option>' .$row['status'].  '</option>';
+            			        }
+                            ?>
+            			</select>
            
 
 					</div>
 				</div>
 				<div class="modal-footer">
+					<input type="hidden" name="ID" id="ID"/>
 					<input type="hidden" name="action" id="action" value=""/>
 					<input type="submit" name="save" id="save" class="btn btn-info" value="Save" />
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
