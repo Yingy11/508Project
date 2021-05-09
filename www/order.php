@@ -28,7 +28,7 @@
 	<h4>Orders</h4>
 	
 	<div class="pb-3">
-		<button type="button" id="addEmployee" class="btn btn-primary btn-sm">Add Employee</button>
+		<button type="button" id="addEmployee" class="btn btn-primary btn-sm">Add Order</button>
 	</div> 
         	
 	<div class="table-responsive">

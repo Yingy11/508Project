@@ -6,6 +6,19 @@
 
 <?php require_once('connection.php'); ?>
 
+<?php 
+	
+	$worker = $conn -> query("SELECT * FROM workers WHERE employee_ID = {$_SESSION['user_ID']}")->fetch();
+	if(!is_array($worker)){
+		header("Location: logout.php");
+	}
+	
+	if(!empty($_GET['message'])){
+		$msg=$_GET['message'];  
+		echo $msg; 
+		unset($_GET['message']); 
+	}
+?>
 <body>
 
 <div class="container-fluid mt-3 mb-3">

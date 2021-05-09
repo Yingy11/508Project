@@ -95,7 +95,11 @@ class Employee
         global $conn;
         
         if ($_POST['ID']) {
-            
+       
+	     if( empty($_POST["arrival_date"]) ){
+		$_POST["arrival_date"] = null;
+	}
+
             $sqlQuery = "UPDATE orders
                             SET
                             item_name = :item_name,

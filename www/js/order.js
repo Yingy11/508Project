@@ -84,7 +84,7 @@ $(document).ready(function(){
 				$('#employee-modal').modal('show');
 				$('#ID').val(ID);
 				$('#item_name').val(data.item_name);
-				$('#quanity').val(data.quantity);
+				$('#quantity').val(data.quantity);
 				$('#order_date').val(data.order_date);
 				$('#arrival_date').val(data.arrival_date);
 				$('#cost').val(data.cost);
