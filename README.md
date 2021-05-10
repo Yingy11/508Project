@@ -1,5 +1,5 @@
 # 508Project
 Login credentials for testing:
-  david@gmail.com : david
-  ellie@gmail.com : ellie
-  sunny@gmail.com : sunny
+  <li>  david@gmail.com : david </li>
+  <li> ellie@gmail.com : ellie </li>
+<li>  sunny@gmail.com : sunny <li>
